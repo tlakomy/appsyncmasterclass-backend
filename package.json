@@ -1,27 +1,39 @@
 {
-  "name": "appsyncmasterclass-backend",
-  "version": "1.0.0",
-  "private": true,
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "sls": "sls"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@playlyfe/gql": "^2.6.2",
-    "@types/aws-lambda": "^8.10.64",
-    "@types/chance": "^1.1.0",
-    "@types/node": "^14.14.10",
-    "aws-sdk": "^2.800.0",
-    "serverless": "2.4.0",
-    "serverless-appsync-plugin": "1.4.0",
-    "serverless-iam-roles-per-function": "^2.0.2",
-    "serverless-plugin-typescript": "^1.1.9",
-    "typescript": "^4.1.2"
-  },
-  "dependencies": {
-    "chance": "^1.1.7"
-  }
+    "name": "appsyncmasterclass-backend",
+    "version": "1.0.0",
+    "private": true,
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "sls": "sls",
+        "exportEnv": "AWS_PROFILE=aws-cdk npm run sls -- export-env",
+        "deploy": "AWS_PROFILE=aws-cdk npm run sls -- deploy",
+        "integration-test": "AWS_PROFILE=aws-cdk jest --verbose ./__tests__/test_cases/integration",
+        "test": "AWS_PROFILE=aws-cdk jest",
+        "test:watch": "AWS_PROFILE=aws-cdk jest --watch"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/preset-env": "^7.12.7",
+        "@babel/preset-typescript": "^7.12.7",
+        "@playlyfe/gql": "^2.6.2",
+        "@types/aws-lambda": "^8.10.64",
+        "@types/chance": "^1.1.0",
+        "@types/jest": "^26.0.16",
+        "@types/node": "^14.14.10",
+        "aws-sdk": "^2.800.0",
+        "dotenv": "^8.2.0",
+        "jest": "^26.6.3",
+        "serverless": "2.4.0",
+        "serverless-appsync-plugin": "1.4.0",
+        "serverless-export-env": "^1.4.0",
+        "serverless-iam-roles-per-function": "^2.0.2",
+        "serverless-plugin-typescript": "1.1.7",
+        "ts-jest": "^26.4.4",
+        "typescript": "^4.1.2"
+    },
+    "dependencies": {
+        "chance": "^1.1.7"
+    }
 }

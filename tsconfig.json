@@ -4,7 +4,9 @@
         "strict": true,
         "strictNullChecks": true,
         "target": "ES2017",
-        "moduleResolution": "node"
+        "moduleResolution": "Node",
+        "module": "esnext"
     },
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules"],
+    "typeAcquisition": { "include": ["jest"] }
 }
