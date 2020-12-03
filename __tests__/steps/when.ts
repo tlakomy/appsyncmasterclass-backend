@@ -1,5 +1,5 @@
 require('dotenv').config();
-const AWS = require('aws-sdk');
+import { CognitoIdentityServiceProvider } from 'aws-sdk';
 const {
     COGNITO_USER_POOL_ID,
     AWS_REGION,
@@ -47,7 +47,7 @@ const a_user_signs_up = async (
     email: string,
     password: string,
 ) => {
-    const cognito = new AWS.CognitoIdentityServiceProvider();
+    const cognito = new CognitoIdentityServiceProvider();
     const userPoolId = COGNITO_USER_POOL_ID;
     const clientId = WEB_COGNITO_USER_POOL_CLIENT_ID;
     if (!userPoolId || !clientId) return { username: '', name: '', email: '' };

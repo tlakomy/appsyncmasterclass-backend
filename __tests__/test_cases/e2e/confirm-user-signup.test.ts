@@ -6,8 +6,6 @@ describe('When a user signs up', () => {
     it("The user's profile should be saved in DynamoDB", async () => {
         const { name, email, password } = given.a_random_user();
 
-        console.log({ name, email });
-
         // Call the lambda function and actually save data in DynamoDB
         const user = await when.a_user_signs_up(name, email, password);
 

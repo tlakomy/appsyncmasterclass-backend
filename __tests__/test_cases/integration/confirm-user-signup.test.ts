@@ -11,8 +11,6 @@ describe('When confirmUserSignup runs', () => {
 
         const username = chance.guid();
 
-        console.log({ name, email });
-
         // Call the lambda function and actually save data in DynamoDB
         await when.we_invoke_confirmUserSignup(username, name, email);
 
