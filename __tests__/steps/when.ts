@@ -1,5 +1,10 @@
 require('dotenv').config();
-const { COGNITO_USER_POOL_ID, AWS_REGION } = process.env;
+const AWS = require('aws-sdk');
+const {
+    COGNITO_USER_POOL_ID,
+    AWS_REGION,
+    WEB_COGNITO_USER_POOL_CLIENT_ID,
+} = process.env;
 
 const we_invoke_confirmUserSignup = async (
     username: string,
@@ -37,6 +42,53 @@ const we_invoke_confirmUserSignup = async (
     await handler(event, context);
 };
 
-const when = { we_invoke_confirmUserSignup };
+const a_user_signs_up = async (
+    name: string,
+    email: string,
+    password: string,
+) => {
+    const cognito = new AWS.CognitoIdentityServiceProvider();
+    const userPoolId = COGNITO_USER_POOL_ID;
+    const clientId = WEB_COGNITO_USER_POOL_CLIENT_ID;
+    if (!userPoolId || !clientId) return { username: '', name: '', email: '' };
+
+    const signupResponse = await cognito
+        .signUp({
+            ClientId: clientId,
+            Username: email,
+            Password: password,
+            UserAttributes: [
+                {
+                    Name: 'name',
+                    Value: name,
+                },
+            ],
+        })
+        .promise();
+
+    const username = signupResponse.UserSub;
+    console.log(`[${email}] - user has signed up - [${username}]`);
+
+    try {
+        const response = await cognito
+            .adminConfirmSignUp({
+                UserPoolId: userPoolId,
+                Username: username,
+            })
+            .promise();
+
+        console.log(`[${email}] - confirmed sign up - ${response}`);
+    } catch (error) {
+        console.log(error);
+    }
+
+    return {
+        username,
+        name,
+        email,
+    };
+};
+
+const when = { we_invoke_confirmUserSignup, a_user_signs_up };
 
 export { when };

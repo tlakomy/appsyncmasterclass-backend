@@ -9,6 +9,7 @@
         "exportEnv": "AWS_PROFILE=aws-cdk npm run sls -- export-env",
         "deploy": "AWS_PROFILE=aws-cdk npm run sls -- deploy",
         "integration-test": "AWS_PROFILE=aws-cdk jest --verbose ./__tests__/test_cases/integration",
+        "e2e-test": "AWS_PROFILE=aws-cdk jest --verbose ./__tests__/test_cases/e2e",
         "test": "AWS_PROFILE=aws-cdk jest",
         "test:watch": "AWS_PROFILE=aws-cdk jest --watch"
     },

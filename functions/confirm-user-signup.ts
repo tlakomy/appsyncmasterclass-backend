@@ -30,15 +30,11 @@ module.exports.handler = async (
             likesCount: 0,
         };
 
-        try {
-            const response = await DocumentClient.put({
-                TableName: USERS_TABLE,
-                Item: user,
-                ConditionExpression: 'attribute_not_exists(id)',
-            }).promise();
-        } catch (error) {
-            console.log(error);
-        }
+        await DocumentClient.put({
+            TableName: USERS_TABLE,
+            Item: user,
+            ConditionExpression: 'attribute_not_exists(id)',
+        }).promise();
 
         return event;
     }

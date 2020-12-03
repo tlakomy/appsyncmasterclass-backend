@@ -1,11 +1,15 @@
 {
     "compilerOptions": {
-        "esModuleInterop": true,
-        "strict": true,
+        "preserveConstEnums": true,
         "strictNullChecks": true,
-        "target": "ES2017",
-        "moduleResolution": "Node",
-        "module": "esnext"
+        "sourceMap": true,
+        "allowJs": true,
+        "target": "es5",
+        "outDir": ".build",
+        "moduleResolution": "node",
+        "lib": ["es2015"],
+        "rootDir": "./",
+        "esModuleInterop": true
     },
     "exclude": ["node_modules"],
     "typeAcquisition": { "include": ["jest"] }
