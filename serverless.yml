@@ -28,6 +28,10 @@ custom:
   manifest:
     srcPath: .build
     output: ./serverless.manifest.json
+    postProcess: ./processManifest.js
+    disablePostDeployGeneration: true
+    disableOutput: true
+    silent: true
 
 functions:
   confirmUserSignup:

@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "sls": "AWS_PROFILE=aws-cdk sls",
-    "manifest": "AWS_PROFILE=aws-cdk tsc && npm run sls manifest",
-    "exportEnv": "AWS_PROFILE=aws-cdk npm run sls -- export-env",
+    "manifest": "AWS_PROFILE=aws-cdk tsc && npm run sls manifest && rm -rf ./build",
+    "exportEnv": "AWS_PROFILE=aws-cdk npm run sls -- export-env && npm run manifest",
     "deploy": "AWS_PROFILE=aws-cdk npm run sls -- deploy",
     "unit-test": "AWS_PROFILE=aws-cdk jest --verbose ./__tests__/test_cases/unit",
     "integration-test": "AWS_PROFILE=aws-cdk jest --verbose ./__tests__/test_cases/integration",
