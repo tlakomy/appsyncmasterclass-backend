@@ -79,7 +79,7 @@ const an_authenticated_user = async (): Promise<AuthenticatedUser> => {
 
   console.log(`[${email}] - confirmed sign up - ${JSON.stringify(response)}`);
 
-  const { AuthenticationResult } = await cognito
+  const { AuthenticationResult, $response } = await cognito
     .initiateAuth({
       AuthFlow: 'USER_PASSWORD_AUTH',
       ClientId: clientId,
@@ -90,6 +90,7 @@ const an_authenticated_user = async (): Promise<AuthenticatedUser> => {
     })
     .promise();
 
+  console.log({ $response });
   console.log(
     `[${email}] - signed in - accessToken: ${AuthenticationResult?.AccessToken} expires in ${AuthenticationResult?.ExpiresIn}`,
   );

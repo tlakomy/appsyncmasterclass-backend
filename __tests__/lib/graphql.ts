@@ -19,10 +19,10 @@ function throwOnErrors({
   errors,
   headers,
 }: Pick<RequestParams, 'query' | 'variables'> & {
-  errors: AppSyncError[];
+  errors?: AppSyncError[];
   headers: Record<string, any>;
 }) {
-  if (errors.length > 0) {
+  if (errors && errors.length > 0) {
     const errorMessage = `${JSON.stringify(
       errors,
       null,
@@ -49,7 +49,7 @@ const GraphQL = async ({
   const headers: { Authorization?: string } = {};
 
   if (accessToken) {
-    headers.Authorization = `Bearer ${accessToken}`;
+    headers.Authorization = `${accessToken}`;
   }
 
   try {

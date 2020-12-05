@@ -135,7 +135,7 @@ const a_user_calls_getMyProfile = async (user: AuthenticatedUser) => {
   }
 
   if (!user.accessToken) {
-    throw `User ${JSON.stringify(user)} does not have access token`;
+    throw `User ${JSON.stringify(user)} does not have an access token`;
   }
 
   console.log(`Calling ${API_URL} with accessToken: ${user.accessToken}`);
