@@ -6,6 +6,14 @@ export interface RandomUser {
   email: string;
 }
 
+export interface AuthenticatedUser {
+  username: string;
+  name: string;
+  email: string;
+  idToken?: string;
+  accessToken?: string;
+}
+
 export interface AppSyncIdentity {
   username: string;
 }

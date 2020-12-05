@@ -2,11 +2,12 @@ require('dotenv').config();
 
 import fs from 'fs';
 import { CognitoIdentityServiceProvider } from 'aws-sdk';
-import { AppSyncContext } from '../typings/testTypes';
-import { map as velocityValueMapper } from 'amplify-appsync-simulator/lib/velocity/value-mapper/mapper';
+import { AppSyncContext, AuthenticatedUser } from '../typings/testTypes';
 import velocityTemplate from 'amplify-velocity-template';
+import { GraphQL } from '../lib/graphql';
 
 const {
+  API_URL,
   COGNITO_USER_POOL_ID,
   AWS_REGION,
   WEB_COGNITO_USER_POOL_CLIENT_ID,
@@ -107,10 +108,55 @@ const we_invoke_an_appsync_template = (
   return JSON.parse(result);
 };
 
+const a_user_calls_getMyProfile = async (user: AuthenticatedUser) => {
+  const GET_MY_PROFILE_QUERY = `query MyQuery {
+    getMyProfile {
+      id
+      backgroundImageUrl
+      bio
+      birthdate
+      createdAt
+      followersCount
+      followingCount
+      imageUrl
+      likesCount
+      location
+      tweetsCount
+      website
+      screenName
+      name
+    }
+  }
+  `;
+
+  if (!API_URL) {
+    throw `API_URL was not provided in process.env`;
+  }
+
+  if (!user.accessToken) {
+    throw `User ${JSON.stringify(user)} does not have access token`;
+  }
+
+  console.log(`Calling ${API_URL} with accessToken: ${user.accessToken}`);
+
+  const data = await GraphQL({
+    url: API_URL,
+    accessToken: user.accessToken,
+    query: GET_MY_PROFILE_QUERY,
+  });
+
+  const profile = data.getMyProfile;
+
+  console.log(`[${user.username}] - fetched profile`);
+
+  return profile;
+};
+
 const when = {
   we_invoke_confirmUserSignup,
   a_user_signs_up,
   we_invoke_an_appsync_template,
+  a_user_calls_getMyProfile,
 };
 
 export { when };

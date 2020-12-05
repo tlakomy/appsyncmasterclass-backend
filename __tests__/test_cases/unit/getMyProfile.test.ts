@@ -1,7 +1,6 @@
 import Chance from 'chance';
 import { given } from '../../steps/given';
 import { when } from '../../steps/when';
-import { then } from '../../steps/then';
 import path from 'path';
 
 const chance = Chance();
