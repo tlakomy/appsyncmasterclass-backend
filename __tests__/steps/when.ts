@@ -5,6 +5,7 @@ import { CognitoIdentityServiceProvider } from 'aws-sdk';
 import { AppSyncContext, AuthenticatedUser } from '../typings/testTypes';
 import velocityTemplate from 'amplify-velocity-template';
 import { GraphQL } from '../lib/graphql';
+import { GetMyProfileQuery } from '../../src/API';
 
 const {
   API_URL,
@@ -139,7 +140,7 @@ const a_user_calls_getMyProfile = async (user: AuthenticatedUser) => {
 
   console.log(`Calling ${API_URL} with accessToken: ${user.accessToken}`);
 
-  const data = await GraphQL({
+  const data: GetMyProfileQuery = await GraphQL({
     url: API_URL,
     accessToken: user.accessToken,
     query: GET_MY_PROFILE_QUERY,

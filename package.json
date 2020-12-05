@@ -12,7 +12,8 @@
     "integration-test": "AWS_PROFILE=aws-cdk jest --verbose ./__tests__/test_cases/integration",
     "e2e-test": "AWS_PROFILE=aws-cdk jest --verbose ./__tests__/test_cases/e2e",
     "test": "AWS_PROFILE=aws-cdk jest",
-    "test:watch": "AWS_PROFILE=aws-cdk jest --watch"
+    "test:watch": "AWS_PROFILE=aws-cdk jest --watch",
+    "generate": "amplify codegen types"
   },
   "author": "",
   "license": "ISC",

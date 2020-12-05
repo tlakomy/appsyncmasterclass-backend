@@ -3,24 +3,24 @@ import { DynamoDB } from 'aws-sdk';
 const { USERS_TABLE } = process.env;
 
 const user_exists_in_UsersTable = async (id: string) => {
-    const dynamo = new DynamoDB.DocumentClient();
+  const dynamo = new DynamoDB.DocumentClient();
 
-    if (!USERS_TABLE) return;
+  if (!USERS_TABLE) return;
 
-    console.log(`looking for user [${id}] in table [${USERS_TABLE}]`);
+  console.log(`looking for user [${id}] in table [${USERS_TABLE}]`);
 
-    const resp = await dynamo
-        .get({
-            TableName: USERS_TABLE,
-            Key: {
-                id,
-            },
-        })
-        .promise();
+  const resp = await dynamo
+    .get({
+      TableName: USERS_TABLE,
+      Key: {
+        id,
+      },
+    })
+    .promise();
 
-    expect(resp.Item).toBeTruthy();
+  expect(resp.Item).toBeTruthy();
 
-    return resp.Item;
+  return resp.Item;
 };
 
 const then = { user_exists_in_UsersTable };
