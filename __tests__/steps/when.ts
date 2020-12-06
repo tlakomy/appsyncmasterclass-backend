@@ -195,11 +195,7 @@ const a_user_calls_editMyProfile = async (
     url: API_URL,
     accessToken: user.accessToken,
     query: EDIT_MY_PROFILE_MUTATION,
-    variables: {
-      'input': {
-        'name': 'TestUser',
-      },
-    },
+    variables: variables,
   });
 
   const profile = data.editMyProfile;

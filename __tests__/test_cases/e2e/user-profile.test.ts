@@ -1,7 +1,9 @@
+import Chance from 'chance';
 import { given } from '../../steps/given';
 import { when } from '../../steps/when';
 import { AuthenticatedUser } from '../../typings/testTypes';
 
+const chance = Chance();
 let user: AuthenticatedUser;
 
 describe('Given an authenticated user', () => {
@@ -36,7 +38,7 @@ describe('Given an authenticated user', () => {
   });
 
   it('The user can edit their profile with editMyProfile', async () => {
-    const TEST_NAME = 'TestUser';
+    const TEST_NAME = chance.name();
 
     const profile = await when.a_user_calls_editMyProfile(user, {
       input: {
