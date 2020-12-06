@@ -12,6 +12,47 @@ export const getMyTimeline = /* GraphQL */ `
     getMyTimeline(limit: $limit, nextToken: $nextToken) {
       tweets {
         id
+        profile {
+          id
+          name
+          screenName
+          imageUrl
+          backgroundImageUrl
+          bio
+          location
+          website
+          birthdate
+          createdAt
+          tweets {
+            tweets {
+              id
+              createdAt
+              ... on Tweet {
+                text
+                replies
+                likes
+                retweets
+                retweeted
+              }
+              ... on Reply {
+                text
+                replies
+                likes
+                retweets
+                retweeted
+              }
+            }
+            nextToken
+          }
+          followersCount
+          followingCount
+          tweetsCount
+          likesCount
+          ... on OtherProfile {
+            following
+            followedBy
+          }
+        }
         createdAt
         ... on Tweet {
           text
@@ -21,11 +62,570 @@ export const getMyTimeline = /* GraphQL */ `
           retweeted
         }
         ... on Reply {
+          inReplyToTweet {
+            id
+            profile {
+              id
+              name
+              screenName
+              imageUrl
+              backgroundImageUrl
+              bio
+              location
+              website
+              birthdate
+              createdAt
+              tweets {
+                nextToken
+              }
+              followersCount
+              followingCount
+              tweetsCount
+              likesCount
+              ... on OtherProfile {
+                following
+                followedBy
+              }
+            }
+            createdAt
+            ... on Tweet {
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Reply {
+              inReplyToTweet {
+                id
+                profile {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  inReplyToTweet {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                  inReplyToUsers {
+                    id
+                    name
+                    screenName
+                    imageUrl
+                    backgroundImageUrl
+                    bio
+                    location
+                    website
+                    birthdate
+                    createdAt
+                    followersCount
+                    followingCount
+                    tweetsCount
+                    likesCount
+                    ... on OtherProfile {
+                      following
+                      followedBy
+                    }
+                  }
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Retweet {
+                  retweetOf {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                }
+              }
+              inReplyToUsers {
+                id
+                name
+                screenName
+                imageUrl
+                backgroundImageUrl
+                bio
+                location
+                website
+                birthdate
+                createdAt
+                tweets {
+                  nextToken
+                }
+                followersCount
+                followingCount
+                tweetsCount
+                likesCount
+                ... on OtherProfile {
+                  following
+                  followedBy
+                }
+              }
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Retweet {
+              retweetOf {
+                id
+                profile {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  inReplyToTweet {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                  inReplyToUsers {
+                    id
+                    name
+                    screenName
+                    imageUrl
+                    backgroundImageUrl
+                    bio
+                    location
+                    website
+                    birthdate
+                    createdAt
+                    followersCount
+                    followingCount
+                    tweetsCount
+                    likesCount
+                    ... on OtherProfile {
+                      following
+                      followedBy
+                    }
+                  }
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Retweet {
+                  retweetOf {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                }
+              }
+            }
+          }
+          inReplyToUsers {
+            id
+            name
+            screenName
+            imageUrl
+            backgroundImageUrl
+            bio
+            location
+            website
+            birthdate
+            createdAt
+            tweets {
+              tweets {
+                id
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+              }
+              nextToken
+            }
+            followersCount
+            followingCount
+            tweetsCount
+            likesCount
+            ... on OtherProfile {
+              following
+              followedBy
+            }
+          }
           text
           replies
           likes
           retweets
           retweeted
+        }
+        ... on Retweet {
+          retweetOf {
+            id
+            profile {
+              id
+              name
+              screenName
+              imageUrl
+              backgroundImageUrl
+              bio
+              location
+              website
+              birthdate
+              createdAt
+              tweets {
+                nextToken
+              }
+              followersCount
+              followingCount
+              tweetsCount
+              likesCount
+              ... on OtherProfile {
+                following
+                followedBy
+              }
+            }
+            createdAt
+            ... on Tweet {
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Reply {
+              inReplyToTweet {
+                id
+                profile {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  inReplyToTweet {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                  inReplyToUsers {
+                    id
+                    name
+                    screenName
+                    imageUrl
+                    backgroundImageUrl
+                    bio
+                    location
+                    website
+                    birthdate
+                    createdAt
+                    followersCount
+                    followingCount
+                    tweetsCount
+                    likesCount
+                    ... on OtherProfile {
+                      following
+                      followedBy
+                    }
+                  }
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Retweet {
+                  retweetOf {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                }
+              }
+              inReplyToUsers {
+                id
+                name
+                screenName
+                imageUrl
+                backgroundImageUrl
+                bio
+                location
+                website
+                birthdate
+                createdAt
+                tweets {
+                  nextToken
+                }
+                followersCount
+                followingCount
+                tweetsCount
+                likesCount
+                ... on OtherProfile {
+                  following
+                  followedBy
+                }
+              }
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Retweet {
+              retweetOf {
+                id
+                profile {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  inReplyToTweet {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                  inReplyToUsers {
+                    id
+                    name
+                    screenName
+                    imageUrl
+                    backgroundImageUrl
+                    bio
+                    location
+                    website
+                    birthdate
+                    createdAt
+                    followersCount
+                    followingCount
+                    tweetsCount
+                    likesCount
+                    ... on OtherProfile {
+                      following
+                      followedBy
+                    }
+                  }
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Retweet {
+                  retweetOf {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
       nextToken
@@ -46,6 +646,264 @@ export const getMyProfile = /* GraphQL */ `
       birthdate
       createdAt
       tweets {
+        tweets {
+          id
+          profile {
+            id
+            name
+            screenName
+            imageUrl
+            backgroundImageUrl
+            bio
+            location
+            website
+            birthdate
+            createdAt
+            tweets {
+              nextToken
+            }
+            followersCount
+            followingCount
+            tweetsCount
+            likesCount
+            ... on OtherProfile {
+              following
+              followedBy
+            }
+          }
+          createdAt
+          ... on Tweet {
+            text
+            replies
+            likes
+            retweets
+            retweeted
+          }
+          ... on Reply {
+            inReplyToTweet {
+              id
+              profile {
+                id
+                name
+                screenName
+                imageUrl
+                backgroundImageUrl
+                bio
+                location
+                website
+                birthdate
+                createdAt
+                followersCount
+                followingCount
+                tweetsCount
+                likesCount
+                ... on OtherProfile {
+                  following
+                  followedBy
+                }
+              }
+              createdAt
+              ... on Tweet {
+                text
+                replies
+                likes
+                retweets
+                retweeted
+              }
+              ... on Reply {
+                inReplyToTweet {
+                  id
+                  createdAt
+                  ... on Tweet {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                  ... on Reply {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                }
+                inReplyToUsers {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                text
+                replies
+                likes
+                retweets
+                retweeted
+              }
+              ... on Retweet {
+                retweetOf {
+                  id
+                  createdAt
+                  ... on Tweet {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                  ... on Reply {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                }
+              }
+            }
+            inReplyToUsers {
+              id
+              name
+              screenName
+              imageUrl
+              backgroundImageUrl
+              bio
+              location
+              website
+              birthdate
+              createdAt
+              tweets {
+                nextToken
+              }
+              followersCount
+              followingCount
+              tweetsCount
+              likesCount
+              ... on OtherProfile {
+                following
+                followedBy
+              }
+            }
+            text
+            replies
+            likes
+            retweets
+            retweeted
+          }
+          ... on Retweet {
+            retweetOf {
+              id
+              profile {
+                id
+                name
+                screenName
+                imageUrl
+                backgroundImageUrl
+                bio
+                location
+                website
+                birthdate
+                createdAt
+                followersCount
+                followingCount
+                tweetsCount
+                likesCount
+                ... on OtherProfile {
+                  following
+                  followedBy
+                }
+              }
+              createdAt
+              ... on Tweet {
+                text
+                replies
+                likes
+                retweets
+                retweeted
+              }
+              ... on Reply {
+                inReplyToTweet {
+                  id
+                  createdAt
+                  ... on Tweet {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                  ... on Reply {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                }
+                inReplyToUsers {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                text
+                replies
+                likes
+                retweets
+                retweeted
+              }
+              ... on Retweet {
+                retweetOf {
+                  id
+                  createdAt
+                  ... on Tweet {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                  ... on Reply {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                }
+              }
+            }
+          }
+        }
         nextToken
       }
       followersCount
@@ -69,6 +927,264 @@ export const getProfile = /* GraphQL */ `
       birthdate
       createdAt
       tweets {
+        tweets {
+          id
+          profile {
+            id
+            name
+            screenName
+            imageUrl
+            backgroundImageUrl
+            bio
+            location
+            website
+            birthdate
+            createdAt
+            tweets {
+              nextToken
+            }
+            followersCount
+            followingCount
+            tweetsCount
+            likesCount
+            ... on OtherProfile {
+              following
+              followedBy
+            }
+          }
+          createdAt
+          ... on Tweet {
+            text
+            replies
+            likes
+            retweets
+            retweeted
+          }
+          ... on Reply {
+            inReplyToTweet {
+              id
+              profile {
+                id
+                name
+                screenName
+                imageUrl
+                backgroundImageUrl
+                bio
+                location
+                website
+                birthdate
+                createdAt
+                followersCount
+                followingCount
+                tweetsCount
+                likesCount
+                ... on OtherProfile {
+                  following
+                  followedBy
+                }
+              }
+              createdAt
+              ... on Tweet {
+                text
+                replies
+                likes
+                retweets
+                retweeted
+              }
+              ... on Reply {
+                inReplyToTweet {
+                  id
+                  createdAt
+                  ... on Tweet {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                  ... on Reply {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                }
+                inReplyToUsers {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                text
+                replies
+                likes
+                retweets
+                retweeted
+              }
+              ... on Retweet {
+                retweetOf {
+                  id
+                  createdAt
+                  ... on Tweet {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                  ... on Reply {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                }
+              }
+            }
+            inReplyToUsers {
+              id
+              name
+              screenName
+              imageUrl
+              backgroundImageUrl
+              bio
+              location
+              website
+              birthdate
+              createdAt
+              tweets {
+                nextToken
+              }
+              followersCount
+              followingCount
+              tweetsCount
+              likesCount
+              ... on OtherProfile {
+                following
+                followedBy
+              }
+            }
+            text
+            replies
+            likes
+            retweets
+            retweeted
+          }
+          ... on Retweet {
+            retweetOf {
+              id
+              profile {
+                id
+                name
+                screenName
+                imageUrl
+                backgroundImageUrl
+                bio
+                location
+                website
+                birthdate
+                createdAt
+                followersCount
+                followingCount
+                tweetsCount
+                likesCount
+                ... on OtherProfile {
+                  following
+                  followedBy
+                }
+              }
+              createdAt
+              ... on Tweet {
+                text
+                replies
+                likes
+                retweets
+                retweeted
+              }
+              ... on Reply {
+                inReplyToTweet {
+                  id
+                  createdAt
+                  ... on Tweet {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                  ... on Reply {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                }
+                inReplyToUsers {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                text
+                replies
+                likes
+                retweets
+                retweeted
+              }
+              ... on Retweet {
+                retweetOf {
+                  id
+                  createdAt
+                  ... on Tweet {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                  ... on Reply {
+                    text
+                    replies
+                    likes
+                    retweets
+                    retweeted
+                  }
+                }
+              }
+            }
+          }
+        }
         nextToken
       }
       followersCount
@@ -85,6 +1201,47 @@ export const getTweets = /* GraphQL */ `
     getTweets(userId: $userId, limit: $limit, nextToken: $nextToken) {
       tweets {
         id
+        profile {
+          id
+          name
+          screenName
+          imageUrl
+          backgroundImageUrl
+          bio
+          location
+          website
+          birthdate
+          createdAt
+          tweets {
+            tweets {
+              id
+              createdAt
+              ... on Tweet {
+                text
+                replies
+                likes
+                retweets
+                retweeted
+              }
+              ... on Reply {
+                text
+                replies
+                likes
+                retweets
+                retweeted
+              }
+            }
+            nextToken
+          }
+          followersCount
+          followingCount
+          tweetsCount
+          likesCount
+          ... on OtherProfile {
+            following
+            followedBy
+          }
+        }
         createdAt
         ... on Tweet {
           text
@@ -94,11 +1251,570 @@ export const getTweets = /* GraphQL */ `
           retweeted
         }
         ... on Reply {
+          inReplyToTweet {
+            id
+            profile {
+              id
+              name
+              screenName
+              imageUrl
+              backgroundImageUrl
+              bio
+              location
+              website
+              birthdate
+              createdAt
+              tweets {
+                nextToken
+              }
+              followersCount
+              followingCount
+              tweetsCount
+              likesCount
+              ... on OtherProfile {
+                following
+                followedBy
+              }
+            }
+            createdAt
+            ... on Tweet {
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Reply {
+              inReplyToTweet {
+                id
+                profile {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  inReplyToTweet {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                  inReplyToUsers {
+                    id
+                    name
+                    screenName
+                    imageUrl
+                    backgroundImageUrl
+                    bio
+                    location
+                    website
+                    birthdate
+                    createdAt
+                    followersCount
+                    followingCount
+                    tweetsCount
+                    likesCount
+                    ... on OtherProfile {
+                      following
+                      followedBy
+                    }
+                  }
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Retweet {
+                  retweetOf {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                }
+              }
+              inReplyToUsers {
+                id
+                name
+                screenName
+                imageUrl
+                backgroundImageUrl
+                bio
+                location
+                website
+                birthdate
+                createdAt
+                tweets {
+                  nextToken
+                }
+                followersCount
+                followingCount
+                tweetsCount
+                likesCount
+                ... on OtherProfile {
+                  following
+                  followedBy
+                }
+              }
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Retweet {
+              retweetOf {
+                id
+                profile {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  inReplyToTweet {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                  inReplyToUsers {
+                    id
+                    name
+                    screenName
+                    imageUrl
+                    backgroundImageUrl
+                    bio
+                    location
+                    website
+                    birthdate
+                    createdAt
+                    followersCount
+                    followingCount
+                    tweetsCount
+                    likesCount
+                    ... on OtherProfile {
+                      following
+                      followedBy
+                    }
+                  }
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Retweet {
+                  retweetOf {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                }
+              }
+            }
+          }
+          inReplyToUsers {
+            id
+            name
+            screenName
+            imageUrl
+            backgroundImageUrl
+            bio
+            location
+            website
+            birthdate
+            createdAt
+            tweets {
+              tweets {
+                id
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+              }
+              nextToken
+            }
+            followersCount
+            followingCount
+            tweetsCount
+            likesCount
+            ... on OtherProfile {
+              following
+              followedBy
+            }
+          }
           text
           replies
           likes
           retweets
           retweeted
+        }
+        ... on Retweet {
+          retweetOf {
+            id
+            profile {
+              id
+              name
+              screenName
+              imageUrl
+              backgroundImageUrl
+              bio
+              location
+              website
+              birthdate
+              createdAt
+              tweets {
+                nextToken
+              }
+              followersCount
+              followingCount
+              tweetsCount
+              likesCount
+              ... on OtherProfile {
+                following
+                followedBy
+              }
+            }
+            createdAt
+            ... on Tweet {
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Reply {
+              inReplyToTweet {
+                id
+                profile {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  inReplyToTweet {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                  inReplyToUsers {
+                    id
+                    name
+                    screenName
+                    imageUrl
+                    backgroundImageUrl
+                    bio
+                    location
+                    website
+                    birthdate
+                    createdAt
+                    followersCount
+                    followingCount
+                    tweetsCount
+                    likesCount
+                    ... on OtherProfile {
+                      following
+                      followedBy
+                    }
+                  }
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Retweet {
+                  retweetOf {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                }
+              }
+              inReplyToUsers {
+                id
+                name
+                screenName
+                imageUrl
+                backgroundImageUrl
+                bio
+                location
+                website
+                birthdate
+                createdAt
+                tweets {
+                  nextToken
+                }
+                followersCount
+                followingCount
+                tweetsCount
+                likesCount
+                ... on OtherProfile {
+                  following
+                  followedBy
+                }
+              }
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Retweet {
+              retweetOf {
+                id
+                profile {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  inReplyToTweet {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                  inReplyToUsers {
+                    id
+                    name
+                    screenName
+                    imageUrl
+                    backgroundImageUrl
+                    bio
+                    location
+                    website
+                    birthdate
+                    createdAt
+                    followersCount
+                    followingCount
+                    tweetsCount
+                    likesCount
+                    ... on OtherProfile {
+                      following
+                      followedBy
+                    }
+                  }
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Retweet {
+                  retweetOf {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
       nextToken
@@ -110,6 +1826,47 @@ export const getLikes = /* GraphQL */ `
     getLikes(userId: $userId, limit: $limit, nextToken: $nextToken) {
       tweets {
         id
+        profile {
+          id
+          name
+          screenName
+          imageUrl
+          backgroundImageUrl
+          bio
+          location
+          website
+          birthdate
+          createdAt
+          tweets {
+            tweets {
+              id
+              createdAt
+              ... on Tweet {
+                text
+                replies
+                likes
+                retweets
+                retweeted
+              }
+              ... on Reply {
+                text
+                replies
+                likes
+                retweets
+                retweeted
+              }
+            }
+            nextToken
+          }
+          followersCount
+          followingCount
+          tweetsCount
+          likesCount
+          ... on OtherProfile {
+            following
+            followedBy
+          }
+        }
         createdAt
         ... on Tweet {
           text
@@ -119,11 +1876,570 @@ export const getLikes = /* GraphQL */ `
           retweeted
         }
         ... on Reply {
+          inReplyToTweet {
+            id
+            profile {
+              id
+              name
+              screenName
+              imageUrl
+              backgroundImageUrl
+              bio
+              location
+              website
+              birthdate
+              createdAt
+              tweets {
+                nextToken
+              }
+              followersCount
+              followingCount
+              tweetsCount
+              likesCount
+              ... on OtherProfile {
+                following
+                followedBy
+              }
+            }
+            createdAt
+            ... on Tweet {
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Reply {
+              inReplyToTweet {
+                id
+                profile {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  inReplyToTweet {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                  inReplyToUsers {
+                    id
+                    name
+                    screenName
+                    imageUrl
+                    backgroundImageUrl
+                    bio
+                    location
+                    website
+                    birthdate
+                    createdAt
+                    followersCount
+                    followingCount
+                    tweetsCount
+                    likesCount
+                    ... on OtherProfile {
+                      following
+                      followedBy
+                    }
+                  }
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Retweet {
+                  retweetOf {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                }
+              }
+              inReplyToUsers {
+                id
+                name
+                screenName
+                imageUrl
+                backgroundImageUrl
+                bio
+                location
+                website
+                birthdate
+                createdAt
+                tweets {
+                  nextToken
+                }
+                followersCount
+                followingCount
+                tweetsCount
+                likesCount
+                ... on OtherProfile {
+                  following
+                  followedBy
+                }
+              }
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Retweet {
+              retweetOf {
+                id
+                profile {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  inReplyToTweet {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                  inReplyToUsers {
+                    id
+                    name
+                    screenName
+                    imageUrl
+                    backgroundImageUrl
+                    bio
+                    location
+                    website
+                    birthdate
+                    createdAt
+                    followersCount
+                    followingCount
+                    tweetsCount
+                    likesCount
+                    ... on OtherProfile {
+                      following
+                      followedBy
+                    }
+                  }
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Retweet {
+                  retweetOf {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                }
+              }
+            }
+          }
+          inReplyToUsers {
+            id
+            name
+            screenName
+            imageUrl
+            backgroundImageUrl
+            bio
+            location
+            website
+            birthdate
+            createdAt
+            tweets {
+              tweets {
+                id
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+              }
+              nextToken
+            }
+            followersCount
+            followingCount
+            tweetsCount
+            likesCount
+            ... on OtherProfile {
+              following
+              followedBy
+            }
+          }
           text
           replies
           likes
           retweets
           retweeted
+        }
+        ... on Retweet {
+          retweetOf {
+            id
+            profile {
+              id
+              name
+              screenName
+              imageUrl
+              backgroundImageUrl
+              bio
+              location
+              website
+              birthdate
+              createdAt
+              tweets {
+                nextToken
+              }
+              followersCount
+              followingCount
+              tweetsCount
+              likesCount
+              ... on OtherProfile {
+                following
+                followedBy
+              }
+            }
+            createdAt
+            ... on Tweet {
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Reply {
+              inReplyToTweet {
+                id
+                profile {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  inReplyToTweet {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                  inReplyToUsers {
+                    id
+                    name
+                    screenName
+                    imageUrl
+                    backgroundImageUrl
+                    bio
+                    location
+                    website
+                    birthdate
+                    createdAt
+                    followersCount
+                    followingCount
+                    tweetsCount
+                    likesCount
+                    ... on OtherProfile {
+                      following
+                      followedBy
+                    }
+                  }
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Retweet {
+                  retweetOf {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                }
+              }
+              inReplyToUsers {
+                id
+                name
+                screenName
+                imageUrl
+                backgroundImageUrl
+                bio
+                location
+                website
+                birthdate
+                createdAt
+                tweets {
+                  nextToken
+                }
+                followersCount
+                followingCount
+                tweetsCount
+                likesCount
+                ... on OtherProfile {
+                  following
+                  followedBy
+                }
+              }
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Retweet {
+              retweetOf {
+                id
+                profile {
+                  id
+                  name
+                  screenName
+                  imageUrl
+                  backgroundImageUrl
+                  bio
+                  location
+                  website
+                  birthdate
+                  createdAt
+                  followersCount
+                  followingCount
+                  tweetsCount
+                  likesCount
+                  ... on OtherProfile {
+                    following
+                    followedBy
+                  }
+                }
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  inReplyToTweet {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                  inReplyToUsers {
+                    id
+                    name
+                    screenName
+                    imageUrl
+                    backgroundImageUrl
+                    bio
+                    location
+                    website
+                    birthdate
+                    createdAt
+                    followersCount
+                    followingCount
+                    tweetsCount
+                    likesCount
+                    ... on OtherProfile {
+                      following
+                      followedBy
+                    }
+                  }
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Retweet {
+                  retweetOf {
+                    id
+                    createdAt
+                    ... on Tweet {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                    ... on Reply {
+                      text
+                      replies
+                      likes
+                      retweets
+                      retweeted
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
       nextToken
@@ -144,6 +2460,105 @@ export const getFollowers = /* GraphQL */ `
         website
         birthdate
         createdAt
+        tweets {
+          tweets {
+            id
+            profile {
+              id
+              name
+              screenName
+              imageUrl
+              backgroundImageUrl
+              bio
+              location
+              website
+              birthdate
+              createdAt
+              followersCount
+              followingCount
+              tweetsCount
+              likesCount
+              ... on OtherProfile {
+                following
+                followedBy
+              }
+            }
+            createdAt
+            ... on Tweet {
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Reply {
+              inReplyToTweet {
+                id
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+              }
+              inReplyToUsers {
+                id
+                name
+                screenName
+                imageUrl
+                backgroundImageUrl
+                bio
+                location
+                website
+                birthdate
+                createdAt
+                followersCount
+                followingCount
+                tweetsCount
+                likesCount
+                ... on OtherProfile {
+                  following
+                  followedBy
+                }
+              }
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Retweet {
+              retweetOf {
+                id
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+              }
+            }
+          }
+          nextToken
+        }
         followersCount
         followingCount
         tweetsCount
@@ -171,6 +2586,105 @@ export const getFollowing = /* GraphQL */ `
         website
         birthdate
         createdAt
+        tweets {
+          tweets {
+            id
+            profile {
+              id
+              name
+              screenName
+              imageUrl
+              backgroundImageUrl
+              bio
+              location
+              website
+              birthdate
+              createdAt
+              followersCount
+              followingCount
+              tweetsCount
+              likesCount
+              ... on OtherProfile {
+                following
+                followedBy
+              }
+            }
+            createdAt
+            ... on Tweet {
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Reply {
+              inReplyToTweet {
+                id
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+              }
+              inReplyToUsers {
+                id
+                name
+                screenName
+                imageUrl
+                backgroundImageUrl
+                bio
+                location
+                website
+                birthdate
+                createdAt
+                followersCount
+                followingCount
+                tweetsCount
+                likesCount
+                ... on OtherProfile {
+                  following
+                  followedBy
+                }
+              }
+              text
+              replies
+              likes
+              retweets
+              retweeted
+            }
+            ... on Retweet {
+              retweetOf {
+                id
+                createdAt
+                ... on Tweet {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+                ... on Reply {
+                  text
+                  replies
+                  likes
+                  retweets
+                  retweeted
+                }
+              }
+            }
+          }
+          nextToken
+        }
         followersCount
         followingCount
         tweetsCount

@@ -1,7 +1,7 @@
 {
   "version" : "2018-05-29",
   "operation" : "UpdateItem",
-  "key": {
+  "key" : {
     "id" : $util.dynamodb.toDynamoDBJson($context.identity.username)
   },
   "update" : {
