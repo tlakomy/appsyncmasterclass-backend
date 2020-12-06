@@ -9,9 +9,9 @@
     "manifest": "AWS_PROFILE=aws-cdk tsc && npm run sls manifest && rm -rf ./build",
     "exportEnv": "AWS_PROFILE=aws-cdk npm run sls -- export-env && npm run manifest",
     "deploy": "AWS_PROFILE=aws-cdk npm run sls -- deploy",
-    "unit-test": "AWS_PROFILE=aws-cdk jest --verbose ./__tests__/test_cases/unit",
-    "integration-test": "AWS_PROFILE=aws-cdk jest --verbose ./__tests__/test_cases/integration",
-    "e2e-test": "AWS_PROFILE=aws-cdk jest --verbose ./__tests__/test_cases/e2e",
+    "test:unit": "AWS_PROFILE=aws-cdk jest --verbose ./__tests__/test_cases/unit",
+    "test:integration": "AWS_PROFILE=aws-cdk jest --verbose ./__tests__/test_cases/integration",
+    "test:e2e": "AWS_PROFILE=aws-cdk jest --verbose ./__tests__/test_cases/e2e",
     "test": "AWS_PROFILE=aws-cdk jest",
     "test:watch": "AWS_PROFILE=aws-cdk jest --watch",
     "generate": "amplify codegen types"
