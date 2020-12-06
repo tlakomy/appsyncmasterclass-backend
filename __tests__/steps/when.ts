@@ -5,7 +5,11 @@ import { CognitoIdentityServiceProvider } from 'aws-sdk';
 import { AppSyncContext, AuthenticatedUser } from '../typings/testTypes';
 import velocityTemplate from 'amplify-velocity-template';
 import { GraphQL } from '../lib/graphql';
-import { GetMyProfileQuery } from '../../src/API';
+import {
+  GetMyProfileQuery,
+  EditMyProfileMutation,
+  EditMyProfileMutationVariables,
+} from '../../src/API';
 
 const {
   API_URL,
@@ -110,7 +114,7 @@ const we_invoke_an_appsync_template = (
 };
 
 const a_user_calls_getMyProfile = async (user: AuthenticatedUser) => {
-  const GET_MY_PROFILE_QUERY = `query MyQuery {
+  const GET_MY_PROFILE_QUERY = `query GetMyProfile {
     getMyProfile {
       id
       backgroundImageUrl
@@ -153,11 +157,66 @@ const a_user_calls_getMyProfile = async (user: AuthenticatedUser) => {
   return profile;
 };
 
+const a_user_calls_editMyProfile = async (
+  user: AuthenticatedUser,
+  variables: EditMyProfileMutationVariables,
+) => {
+  const EDIT_MY_PROFILE_MUTATION = `mutation EdiMyProfileMutation($input: ProfileInput!) {
+    editMyProfile(input: $input) {
+      id
+      backgroundImageUrl
+      bio
+      birthdate
+      createdAt
+      followersCount
+      followingCount
+      imageUrl
+      likesCount
+      location
+      tweetsCount
+      website
+      screenName
+      name
+    }
+  }
+  `;
+
+  if (!API_URL) {
+    throw `API_URL was not provided in process.env`;
+  }
+
+  if (!user.accessToken) {
+    throw `User ${JSON.stringify(user)} does not have an access token`;
+  }
+
+  console.log(`Calling ${API_URL} with accessToken: ${user.accessToken}`);
+
+  const data: EditMyProfileMutation = await GraphQL({
+    url: API_URL,
+    accessToken: user.accessToken,
+    query: EDIT_MY_PROFILE_MUTATION,
+    variables: {
+      'input': {
+        'name': 'TestUser',
+      },
+    },
+  });
+
+  const profile = data.editMyProfile;
+
+  console.log(
+    `[${user.username}] - edited profile: ${JSON.stringify(profile)}`,
+  );
+
+  return profile;
+};
+
 const when = {
   we_invoke_confirmUserSignup,
   a_user_signs_up,
   we_invoke_an_appsync_template,
   a_user_calls_getMyProfile,
+  a_user_calls_editMyProfile,
 };
 
 export { when };
