@@ -13,6 +13,9 @@ mappingTemplates:
     # for each template we can also specify the name of the request and response:
     # request: - defaults to `defaultMappingTemplates.request` or {type}.{field}.request.vtl
     # response: - defaults to `defaultMappingTemplates.response` or {type}.{field}.response.vtl
+  - type: Mutation
+    field: editMyProfile
+    dataSource: usersTable
 
 dataSources:
   - type: NONE
